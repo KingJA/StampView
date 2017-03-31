@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.kingjalib.stampview.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prior to N, when drag enters into child of a view that has already received an
+ACTION_DRAG_ENTERED event, the parent doesn't get a ACTION_DRAG_EXITED event.
+ACTION_DRAG_LOCATION and ACTION_DROP were delivered to the parent of a view that returned
+false from its event handler for these events.
+Starting from N, the parent will get ACTION_DRAG_EXITED event before the child gets its
+ACTION_DRAG_ENTERED. ACTION_DRAG_LOCATION and ACTION_DROP are never propagated to the parent.
+sCascadedDragDrop is true for pre-N apps for backwards compatibility implementation.Prior to N, when drag enters into child of a view that has already received an
+ACTION_DRAG_ENTERED event, the parent doesn't get a ACTION_DRAG_EXITED event.
+ACTION_DRAG_LOCATION and ACTION_DROP were delivered to the parent of a view that returned
+false from its event handler for these events.
+Starting from N, the parent will get ACTION_DRAG_EXITED event before the child gets its
+ACTION_DRAG_ENTERED. ACTION_DRAG_LOCATION and ACTION_DROP are never propagated to the parent.
+sCascadedDragDrop is true for pre-N apps for backwards compatibility implementation." />
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.kingja.stampview.StampView
+            android:layout_marginRight="16dp"
+            app:stampText="可兑换"
+            app:stampColor="#bb075624"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerInParent="true" />
+
+        <com.kingja.stampview.StampView
+            android:layout_marginRight="16dp"
+            app:stampColor="#aa656468"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            app:stampText="已过期"
+            android:layout_centerInParent="true" />
+
+        <com.kingja.stampview.StampView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            app:stampText="已解决"
+            app:stampColor="#bbbb2c28" />
+    </LinearLayout>
+</RelativeLayout>
