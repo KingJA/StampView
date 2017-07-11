@@ -34,7 +34,7 @@ sCascadedDragDrop is true for pre-N apps for backwards compatibility implementat
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.kingja.stampview.StampView
+     <!--   <com.kingja.stampview.StampView
             android:layout_marginRight="16dp"
             app:stampText="可兑换"
             app:stampColor="#bb075624"
@@ -48,11 +48,12 @@ sCascadedDragDrop is true for pre-N apps for backwards compatibility implementat
             android:layout_width="64dp"
             android:layout_height="64dp"
             app:stampText="已过期"
-            android:layout_centerInParent="true" />
+            android:layout_centerInParent="true" />-->
 
         <com.kingja.stampview.StampView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:id="@+id/sv"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_centerInParent="true"
             app:stampText="已解决"
             app:stampColor="#bbbb2c28" />

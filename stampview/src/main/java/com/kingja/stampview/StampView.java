@@ -4,8 +4,11 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.View;
+
+import java.util.Random;
 
 /**
  * Description:TODO
@@ -27,6 +30,7 @@ public class StampView extends View {
     private float mTextHeightOffset;
     private int mBorderColor;
     private String mStampText;
+    private Paint mSpotPaint;
 
     public StampView(Context context) {
         this(context,null);
@@ -46,6 +50,10 @@ public class StampView extends View {
     }
 
     private void initStampView() {
+        mSpotPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mSpotPaint.setColor(0xffffffff);
+
+
         mOutStrokePaint = new Paint();
         mOutStrokePaint.setColor(mBorderColor);
         mOutStrokePaint.setAntiAlias(true);
@@ -91,6 +99,37 @@ public class StampView extends View {
         canvas.drawText(mStampText, mWidth*0.5f - 0.5f * tabTextWidth, mHeight * 0.5f + mTextHeightOffset, mTextPaint);
 
         canvas.restore();
+        drawSpot(canvas);
+
     }
 
+    private void drawSpot(Canvas canvas) {
+        for (int i = 0; i < 200; i++) {
+            Path mirrorPath = getRandomSpotPath(3, new Random().nextInt(mWidth/2)+new Random().nextInt(mWidth/2), new Random()
+                    .nextInt(mHeight/2)+new Random().nextInt(mHeight/2), new Random().nextInt(3) + 3);
+            canvas.drawPath(mirrorPath,mSpotPaint);
+        }
+    }
+
+    public Path getRandomSpotPath(int sides, int centerX, int centerY, int radius) {
+        Path path = new Path();
+        float offsetAngle = 0;
+        offsetAngle = (float) (Math.PI * offsetAngle / 180);
+        for (int i = 0; i < sides; i++) {
+            float x = (float) (centerX + radius * Math.cos(offsetAngle));
+            float y = (float) (centerY + radius * Math.sin(offsetAngle));
+            offsetAngle += 2 * Math.PI / sides;
+            if (i == 0) {
+                path.moveTo(x, y);
+            } else {
+                path.lineTo(x+new Random().nextInt(8)+3, y+new Random().nextInt(8)+3);
+            }
+        }
+        path.close();
+        return path;
+    }
+
+    public void reDraw() {
+        invalidate();
+    }
 }
